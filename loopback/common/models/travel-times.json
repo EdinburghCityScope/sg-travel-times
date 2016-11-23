@@ -1,0 +1,55 @@
+{
+  "name": "TravelTimes",
+  "description": "Edinburgh travel times (minutes) to key services by car or public transport.",
+  "plural": "TravelTimes",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "mongodb": {
+    "collection": "Stats"
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true,
+      "id": true
+    },
+    "year": {
+      "type": "number",
+      "required": true
+    },
+    "zone": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "method": {
+      "type": "string",
+      "required": true
+    },
+    "destination": {
+      "type": "string",
+      "required": true
+    },
+    "mean": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "dataZone": {
+      "type": "belongsTo",
+      "model": "GeoJSONFeature",
+      "foreignKey": "zone",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
